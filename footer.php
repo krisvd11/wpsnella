@@ -193,7 +193,7 @@
 </footer>
 
 <div class="copyright">
-<p class="footer-text footer-bottom-text">
+            <p class="footer-text footer-bottom-text">
                 &copy; <?php echo esc_html( date_i18n( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>
             </p>
 

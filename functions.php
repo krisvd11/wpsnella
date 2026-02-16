@@ -31,6 +31,22 @@ function theme_enqueue_gsap_loader() {
     );
 
     wp_enqueue_script(
+        'faq',
+        get_template_directory_uri() . '/js/faq.js',
+        array(),
+        '1.0',
+        true
+    );
+
+    wp_enqueue_script(
+        'animatie',
+        get_template_directory_uri() . '/js/animatie.js',
+        array(),
+        '1.0',
+        true
+    );
+
+    wp_enqueue_script(
         'theme-loader',
         get_template_directory_uri() . '/js/loader.js',
         array('custom-gsap', 'gsap-scrolltrigger', 'lenis'),
@@ -405,6 +421,20 @@ function register_acf_blocks() {
                 'align' => true,
             ],
         ]);
+        acf_register_block_type([
+            'name'              => 'faq-accordion',
+            'title'             => __('FAQ Accordion'),
+            'description'       => __('Simple FAQ accordion block.'),
+            'render_template'   => get_template_directory() . '/template-parts/blocks/faq-accordion.php',
+            'category'          => 'formatting',
+            'icon'              => 'editor-help',
+            'keywords'          => ['faq', 'accordion'],
+            'mode'              => 'edit',
+            'supports'          => [
+                'align' => true,
+                'jsx'   => true
+            ]
+        ]);
     }
 }
 
@@ -497,6 +527,55 @@ function register_vacature_cpt() {
     register_post_type( 'vacature', $args );
 }
 add_action( 'init', 'register_vacature_cpt' );
+
+
+
+
+
+function register_faq_cpt() {
+    $labels = [
+        'name'                  => __( 'faq', 'test' ),
+        'singular_name'         => __( 'FAQ', 'test' ),
+        'menu_name'             => __( 'Faq', 'test' ),
+        'name_admin_bar'        => __( 'Faq', 'test' ),
+        'add_new'               => __( 'Nieuw faq', 'test' ),
+        'add_new_item'          => __( 'Nieuw Faq toevoegen', 'test' ),
+        'edit_item'             => __( 'Faq bewerken', 'test' ),
+        'new_item'              => __( 'Nieuw Faq', 'test' ),
+        'view_item'             => __( 'Bekijk Faq', 'test' ),
+        'search_items'          => __( 'Zoek Faq', 'test' ),
+        'not_found'             => __( 'Geen Faq gevonden', 'test' ),
+        'not_found_in_trash'    => __( 'Geen Faq gevonden in prullenbak', 'test' ),
+        'all_items'             => __( 'Alle Faq', 'test' ),
+        'archives'              => __( 'Faq archief', 'test' ),
+        'insert_into_item'      => __( 'Invoegen in Faq', 'test' ),
+        'uploaded_to_this_item' => __( 'Geüpload naar dit Faq', 'test' ),
+    ];
+
+    $args = [
+        'labels'             => $labels,
+        'public'             => true,
+        'has_archive'        => true,
+        'rewrite'            => [ 'slug' => 'faq' ],
+        'show_in_rest'       => true, 
+        'menu_position'      => 20,
+        'menu_icon'          => 'dashicons-edit-page',
+        'supports'           => [ 'title', 'editor', 'thumbnail', 'excerpt' ],
+        'hierarchical'       => false,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'show_in_admin_bar'  => true,
+        'show_in_nav_menus'  => true,
+        'publicly_queryable' => true,
+        'exclude_from_search'=> false,
+        'capability_type'    => 'post',
+        'taxonomies' => array('category'),
+
+    ];
+
+    register_post_type( 'faq', $args );
+}
+add_action( 'init', 'register_faq_cpt' );
 
 
 
