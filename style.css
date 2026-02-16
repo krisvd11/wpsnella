@@ -1,0 +1,220 @@
+/*
+Theme Name: My Starter Theme
+Author: Your Name
+Version: 1.0
+*/
+
+
+
+
+@font-face {
+    font-family: 'Causten';
+    src: url('fonts/Causten-SemiBold.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Causten regular';
+    src: url('fonts/Causten-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+.container-width {
+    max-width: 1000px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+footer {
+    padding: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Causten', sans-serif;
+    letter-spacing: -.025em;
+    margin: 0px !important;
+    padding: 20px 0px !important;
+    color: #0f2a84;
+
+}
+
+p {
+    font-family: 'Causten regular', sans-serif;
+    font-size: 22px;
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+body {
+    width: 100% !important;
+    background: #f8f8f8;
+}
+
+h1 {
+    font-size: clamp(5rem, 5rem + (1vw - .375rem) * 5.7803468208, 5rem);
+    line-height: .8;
+}
+
+button {
+    font-family: 'Causten regular', sans-serif;
+}
+
+.btn {
+    background-color: #fdc41f;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+
+.site-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.site-nav li {
+    position: relative;
+    display: flex;
+    border-radius: 10px;
+}
+
+.site-nav li a {  
+    font-family: 'Causten', sans-serif;
+    letter-spacing: -.025em;
+    color: #0f2a84;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 8px;
+    transition: 0.3s;
+    
+}
+
+.site-nav li a:hover {
+    text-decoration: underline;
+}
+
+.site-nav .sub-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 180px;
+    background: #fff;
+    padding: 0.5rem 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.site-nav li:hover > .sub-menu {
+    display: block;
+}
+
+.site-nav .menu-item-has-children > a::after {
+    content: "▾";
+    margin-left: 0.35rem;
+    font-size: 0.8em;
+}
+
+img.logo {
+    height: 100px;
+}
+
+.box {
+    background-color: white;
+}
+
+.wrapper1 {
+    width: 22%;
+    border-radius: 50px;
+    height: 1000px;
+    margin-left: 22%;
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    z-index: 200;
+}
+
+.wrapper2 {
+    width: 22%;
+    border-radius: 50px;
+    height: 900px;
+    margin-left: 65%;
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    z-index: 200;
+}
+
+.wrapper3 {
+    width: 300px;
+    border-radius: 50px;
+    height: 200px;
+    margin-left: 200px;
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    z-index: 200;
+}
+
+.wrapper4 {
+    width: 300px;
+    border-radius: 50px;
+    height: 200px;
+    margin-left: 700px;
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    z-index: 200;
+}
+
+.svgheight img {
+    width: 100%;
+    border-radius: 50px;
+}
+
+.svg-path {
+    pointer-events: none;
+}
+
+.svgwidth {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    padding-top: 200px;
+    pointer-events: none;
+}
+
+.svgheight {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+}
+
+.test,
+.svgwidth {
+    display: block;
+}
+
+section {
+    margin-bottom: 80px;
+    margin-top: 20px;
+}
+
+.kleur {
+    color: #fdc41f;
+}
