@@ -78,10 +78,240 @@ function my_starter_theme_setup() {
 
     register_nav_menus( [
         'primary' => __( 'Primary Menu', 'test' ),
+        'footer'  => __( 'Footer Menu', 'test' ),
     ] );
 }
 add_action( 'after_setup_theme', 'my_starter_theme_setup' );
 
+if ( ! defined( 'TEST_FOOTER_SETTINGS_OPTION' ) ) {
+    define( 'TEST_FOOTER_SETTINGS_OPTION', 'test_footer_settings' );
+}
+
+if ( ! function_exists( 'test_footer_settings_defaults' ) ) {
+    function test_footer_settings_defaults() {
+        return [
+            'footer_logo'              => 0,
+            'footer_open_badge_text'   => __( 'Yes! Wij zijn open tot 18:00 uur', 'test' ),
+            'footer_hours_title'       => __( 'Openingstijden', 'test' ),
+            'footer_opening_hours'     => "Maandag|08:00 - 18:00\nDinsdag|08:00 - 18:00\nWoensdag|08:00 - 18:00\nDonderdag|08:00 - 18:00\nVrijdag|08:00 - 18:00\nZaterdag|08:00 - 18:00\nZondag|Gesloten",
+            'footer_nav_title'         => __( 'Snel naar', 'test' ),
+            'footer_company_name'      => 'Snella Autowas',
+            'footer_location1_title'   => 'Snella Autowas N206',
+            'footer_location1_address' => "Lageweg 44\n2222 AG Katwijk aan Zee",
+            'footer_location2_title'   => 'Snella Autowas Katwijkerbroek',
+            'footer_location2_address' => "Valkenburgseweg 101\n2223 KC Katwijk",
+            'footer_phone'             => '(071) 407 79 99',
+            'footer_email'             => 'info@snella.nl',
+            'footer_social_label'      => __( 'Volg Snella op', 'test' ),
+            'footer_instagram_url'     => '',
+            'footer_facebook_url'      => '',
+        ];
+    }
+}
+
+if ( ! function_exists( 'test_footer_settings_get_all' ) ) {
+    function test_footer_settings_get_all() {
+        $opts = get_option( TEST_FOOTER_SETTINGS_OPTION, [] );
+        if ( ! is_array( $opts ) ) {
+            $opts = [];
+        }
+        return wp_parse_args( $opts, test_footer_settings_defaults() );
+    }
+}
+
+if ( ! function_exists( 'test_footer_settings_get' ) ) {
+    function test_footer_settings_get( $key, $default = '' ) {
+        $opts = test_footer_settings_get_all();
+        return array_key_exists( $key, $opts ) ? $opts[ $key ] : $default;
+    }
+}
+
+add_action(
+    'after_switch_theme',
+    function () {
+        if ( false === get_option( TEST_FOOTER_SETTINGS_OPTION, false ) ) {
+            add_option( TEST_FOOTER_SETTINGS_OPTION, test_footer_settings_defaults() );
+        }
+    }
+);
+
+function test_footer_settings_sanitize( $input ) {
+    $defaults = test_footer_settings_defaults();
+    $output   = [];
+
+    if ( ! is_array( $input ) ) {
+        $input = [];
+    }
+
+    $output['footer_logo']              = absint( $input['footer_logo'] ?? 0 );
+    $output['footer_open_badge_text']   = sanitize_text_field( $input['footer_open_badge_text'] ?? $defaults['footer_open_badge_text'] );
+    $output['footer_hours_title']       = sanitize_text_field( $input['footer_hours_title'] ?? $defaults['footer_hours_title'] );
+    $output['footer_opening_hours']     = wp_kses_post( $input['footer_opening_hours'] ?? $defaults['footer_opening_hours'] );
+    $output['footer_nav_title']         = sanitize_text_field( $input['footer_nav_title'] ?? $defaults['footer_nav_title'] );
+    $output['footer_company_name']      = sanitize_text_field( $input['footer_company_name'] ?? $defaults['footer_company_name'] );
+    $output['footer_location1_title']   = sanitize_text_field( $input['footer_location1_title'] ?? $defaults['footer_location1_title'] );
+    $output['footer_location1_address'] = wp_kses_post( $input['footer_location1_address'] ?? $defaults['footer_location1_address'] );
+    $output['footer_location2_title']   = sanitize_text_field( $input['footer_location2_title'] ?? $defaults['footer_location2_title'] );
+    $output['footer_location2_address'] = wp_kses_post( $input['footer_location2_address'] ?? $defaults['footer_location2_address'] );
+    $output['footer_phone']             = sanitize_text_field( $input['footer_phone'] ?? $defaults['footer_phone'] );
+    $output['footer_email']             = sanitize_email( $input['footer_email'] ?? $defaults['footer_email'] );
+    $output['footer_social_label']      = sanitize_text_field( $input['footer_social_label'] ?? $defaults['footer_social_label'] );
+    $output['footer_instagram_url']     = esc_url_raw( $input['footer_instagram_url'] ?? $defaults['footer_instagram_url'] );
+    $output['footer_facebook_url']      = esc_url_raw( $input['footer_facebook_url'] ?? $defaults['footer_facebook_url'] );
+
+    return $output;
+}
+
+add_action(
+    'admin_init',
+    function () {
+        register_setting(
+            'test_footer_settings_group',
+            TEST_FOOTER_SETTINGS_OPTION,
+            [
+                'sanitize_callback' => 'test_footer_settings_sanitize',
+                'default'           => test_footer_settings_defaults(),
+            ]
+        );
+    }
+);
+
+add_action(
+    'admin_menu',
+    function () {
+        add_theme_page(
+            __( 'Footer Sections', 'test' ),
+            __( 'Footer Sections', 'test' ),
+            'manage_options',
+            'test-footer-sections',
+            'test_footer_settings_render_page'
+        );
+    }
+);
+
+add_action(
+    'admin_enqueue_scripts',
+    function ( $hook ) {
+        if ( 'appearance_page_test-footer-sections' !== $hook ) {
+            return;
+        }
+        wp_enqueue_media();
+        wp_enqueue_script(
+            'test-footer-sections-admin',
+            get_template_directory_uri() . '/js/footer-sections-admin.js',
+            [ 'jquery' ],
+            '1.0.0',
+            true
+        );
+    }
+);
+
+function test_footer_settings_render_page() {
+    if ( ! current_user_can( 'manage_options' ) ) {
+        return;
+    }
+
+    $opts = test_footer_settings_get_all();
+    ?>
+    <div class="wrap">
+        <h1><?php echo esc_html__( 'Footer Sections', 'test' ); ?></h1>
+        <form method="post" action="options.php">
+            <?php settings_fields( 'test_footer_settings_group' ); ?>
+
+            <table class="form-table" role="presentation">
+                <tr>
+                    <th scope="row"><?php esc_html_e( 'Footer logo', 'test' ); ?></th>
+                    <td>
+                        <input type="hidden" id="tfs_footer_logo" name="<?php echo esc_attr( TEST_FOOTER_SETTINGS_OPTION ); ?>[footer_logo]" value="<?php echo esc_attr( (int) $opts['footer_logo'] ); ?>">
+                        <div id="tfs_footer_logo_preview" style="margin: 8px 0;">
+                            <?php
+                            if ( ! empty( $opts['footer_logo'] ) ) {
+                                echo wp_get_attachment_image( (int) $opts['footer_logo'], 'medium', false, [ 'style' => 'max-height:60px;width:auto;' ] );
+                            }
+                            ?>
+                        </div>
+                        <button type="button" class="button" id="tfs_footer_logo_select"><?php esc_html_e( 'Select image', 'test' ); ?></button>
+                        <button type="button" class="button" id="tfs_footer_logo_remove"><?php esc_html_e( 'Remove', 'test' ); ?></button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row"><?php esc_html_e( 'Open melding', 'test' ); ?></th>
+                    <td><input type="text" class="regular-text" name="<?php echo esc_attr( TEST_FOOTER_SETTINGS_OPTION ); ?>[footer_open_badge_text]" value="<?php echo esc_attr( $opts['footer_open_badge_text'] ); ?>"></td>
+                </tr>
+
+                <tr>
+                    <th scope="row"><?php esc_html_e( 'Titel openingstijden', 'test' ); ?></th>
+                    <td><input type="text" class="regular-text" name="<?php echo esc_attr( TEST_FOOTER_SETTINGS_OPTION ); ?>[footer_hours_title]" value="<?php echo esc_attr( $opts['footer_hours_title'] ); ?>"></td>
+                </tr>
+
+                <tr>
+                    <th scope="row"><?php esc_html_e( 'Openingstijden', 'test' ); ?></th>
+                    <td>
+                        <textarea class="large-text code" rows="8" name="<?php echo esc_attr( TEST_FOOTER_SETTINGS_OPTION ); ?>[footer_opening_hours]"><?php echo esc_textarea( $opts['footer_opening_hours'] ); ?></textarea>
+                        <p class="description"><?php esc_html_e( 'Per regel: Dag|Tijd (bijv. Maandag|08:00 - 18:00)', 'test' ); ?></p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row"><?php esc_html_e( 'Titel navigatiekolom', 'test' ); ?></th>
+                    <td><input type="text" class="regular-text" name="<?php echo esc_attr( TEST_FOOTER_SETTINGS_OPTION ); ?>[footer_nav_title]" value="<?php echo esc_attr( $opts['footer_nav_title'] ); ?>"></td>
+                </tr>
+
+                <tr>
+                    <th scope="row"><?php esc_html_e( 'Bedrijfsnaam', 'test' ); ?></th>
+                    <td><input type="text" class="regular-text" name="<?php echo esc_attr( TEST_FOOTER_SETTINGS_OPTION ); ?>[footer_company_name]" value="<?php echo esc_attr( $opts['footer_company_name'] ); ?>"></td>
+                </tr>
+
+                <tr>
+                    <th scope="row"><?php esc_html_e( 'Locatie 1 – titel', 'test' ); ?></th>
+                    <td><input type="text" class="regular-text" name="<?php echo esc_attr( TEST_FOOTER_SETTINGS_OPTION ); ?>[footer_location1_title]" value="<?php echo esc_attr( $opts['footer_location1_title'] ); ?>"></td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php esc_html_e( 'Locatie 1 – adres', 'test' ); ?></th>
+                    <td><textarea class="large-text" rows="3" name="<?php echo esc_attr( TEST_FOOTER_SETTINGS_OPTION ); ?>[footer_location1_address]"><?php echo esc_textarea( $opts['footer_location1_address'] ); ?></textarea></td>
+                </tr>
+
+                <tr>
+                    <th scope="row"><?php esc_html_e( 'Locatie 2 – titel', 'test' ); ?></th>
+                    <td><input type="text" class="regular-text" name="<?php echo esc_attr( TEST_FOOTER_SETTINGS_OPTION ); ?>[footer_location2_title]" value="<?php echo esc_attr( $opts['footer_location2_title'] ); ?>"></td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php esc_html_e( 'Locatie 2 – adres', 'test' ); ?></th>
+                    <td><textarea class="large-text" rows="3" name="<?php echo esc_attr( TEST_FOOTER_SETTINGS_OPTION ); ?>[footer_location2_address]"><?php echo esc_textarea( $opts['footer_location2_address'] ); ?></textarea></td>
+                </tr>
+
+                <tr>
+                    <th scope="row"><?php esc_html_e( 'Telefoonnummer', 'test' ); ?></th>
+                    <td><input type="text" class="regular-text" name="<?php echo esc_attr( TEST_FOOTER_SETTINGS_OPTION ); ?>[footer_phone]" value="<?php echo esc_attr( $opts['footer_phone'] ); ?>"></td>
+                </tr>
+
+                <tr>
+                    <th scope="row"><?php esc_html_e( 'E-mailadres', 'test' ); ?></th>
+                    <td><input type="email" class="regular-text" name="<?php echo esc_attr( TEST_FOOTER_SETTINGS_OPTION ); ?>[footer_email]" value="<?php echo esc_attr( $opts['footer_email'] ); ?>"></td>
+                </tr>
+
+                <tr>
+                    <th scope="row"><?php esc_html_e( 'Social label', 'test' ); ?></th>
+                    <td><input type="text" class="regular-text" name="<?php echo esc_attr( TEST_FOOTER_SETTINGS_OPTION ); ?>[footer_social_label]" value="<?php echo esc_attr( $opts['footer_social_label'] ); ?>"></td>
+                </tr>
+
+                <tr>
+                    <th scope="row"><?php esc_html_e( 'Instagram URL', 'test' ); ?></th>
+                    <td><input type="url" class="regular-text" name="<?php echo esc_attr( TEST_FOOTER_SETTINGS_OPTION ); ?>[footer_instagram_url]" value="<?php echo esc_attr( $opts['footer_instagram_url'] ); ?>"></td>
+                </tr>
+
+                <tr>
+                    <th scope="row"><?php esc_html_e( 'Facebook URL', 'test' ); ?></th>
+                    <td><input type="url" class="regular-text" name="<?php echo esc_attr( TEST_FOOTER_SETTINGS_OPTION ); ?>[footer_facebook_url]" value="<?php echo esc_attr( $opts['footer_facebook_url'] ); ?>"></td>
+                </tr>
+            </table>
+
+            <?php submit_button(); ?>
+        </form>
+    </div>
+    <?php
+}
 
 
 add_action('acf/init', 'register_acf_blocks');
