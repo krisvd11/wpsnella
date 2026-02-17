@@ -7,6 +7,7 @@ $icon = get_field('icon');
 $priority = get_field('priority');
 $faq_ids = get_field('manual_selected');
 $method = get_field('option');
+$bordercolor = get_field('border-color');
 
 
 $manual_query = new WP_Query([
@@ -86,6 +87,10 @@ $query = ($method === 'manual') ? $manual_query : $category_query;
         <?php endwhile; ?>
         </div>
 
+<?php else : ?>
+    <p>
+        Leeg
+    </p>
 <?php endif; ?>
 <?php wp_reset_postdata(); ?>
 
@@ -121,7 +126,7 @@ $query = ($method === 'manual') ? $manual_query : $category_query;
 .acf-faq-accordion {
     width: 500px;
     border-radius: 20px;
-    border: 1px solid red;
+    border: 1px solid <?php echo esc_html($bordercolor); ?>;
     overflow: hidden;
 
 }
@@ -138,8 +143,13 @@ $query = ($method === 'manual') ? $manual_query : $category_query;
     justify-content: space-between;
     align-items: center;
     background: white;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid <?php echo esc_html($bordercolor); ?>;
 }
+
+.faq-item:last-child .faq-question {
+    border-bottom: none;
+}
+
 
 .faq-answer {
     max-height: 0;

@@ -410,6 +410,19 @@ function register_acf_blocks() {
         ]);
 
         acf_register_block_type([
+            'name'            => 'Pricing',
+            'title'           => __('Pricing Block'),
+            'description'     => __('Pricing', 'test'),
+            'render_template' => 'template-parts/blocks/pricing.php',
+            'category'        => 'layout',
+            'icon'            => 'groups',
+            'keywords'        => ['personeel', 'team', 'medewerkers'],
+            'supports'        => [
+                'align' => true,
+            ],
+        ]);
+
+        acf_register_block_type([
             'name'            => 'herov2',
             'title'           => __('Hero v2 Block'),
             'description'     => __('herov2', 'test'),
