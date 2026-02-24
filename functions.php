@@ -1,6 +1,18 @@
 <?php
 
 
+if (file_exists(__DIR__ . '/vendor/autoload.php')) {
+    require_once __DIR__ . '/vendor/autoload.php';
+}
+
+if (class_exists(\Roots\Acorn\Application::class)) {
+    \Roots\Acorn\Application::configure()
+        ->withProviders([
+            \App\Providers\BlockServiceProvider::class,
+            \App\Providers\FieldServiceProvider::class,
+        ])
+        ->boot();
+}
 
 function theme_enqueue_gsap_loader() {
 
@@ -330,128 +342,6 @@ function test_footer_settings_render_page() {
 }
 
 
-add_action('acf/init', 'register_acf_blocks');
-function register_acf_blocks() {
-
-    if ( function_exists('acf_register_block_type') ) {
-
-        acf_register_block_type([
-            'name'            => 'hero',
-            'title'           => __('Hero Block'),
-            'description'     => __('A custom hero section'),
-            'render_template' => 'template-parts/blocks/hero.php',
-            'category'        => 'layout',
-            'icon'            => 'cover-image',
-            'keywords'        => ['hero', 'banner'],
-            'supports'        => [
-                'align' => true,
-            ],
-        ]);
-        acf_register_block_type([
-            'name'            => 'cta',
-            'title'           => __('CTA Block'),
-            'description'     => __('A custom CTA section'),
-            'render_template' => 'template-parts/blocks/cta.php',
-            'category'        => 'layout',
-            'icon'            => 'button',
-            'keywords'        => ['cta', 'button'],
-            'supports'        => [
-                'align' => true,
-            ],
-        ]);
-        acf_register_block_type([
-            'name'            => 'personeel',
-            'title'           => __('Personeel Block'),
-            'description'     => __('Overzicht van personeelsleden', 'test'),
-            'render_template' => 'template-parts/blocks/personeel.php',
-            'category'        => 'layout',
-            'icon'            => 'groups',
-            'keywords'        => ['personeel', 'team', 'medewerkers'],
-            'supports'        => [
-                'align' => true,
-            ],
-        ]);
-        acf_register_block_type([
-            'name'            => 'animatie',
-            'title'           => __('Animatie Block'),
-            'description'     => __('Animatie', 'test'),
-            'render_template' => 'template-parts/blocks/intro.php',
-            'category'        => 'layout',
-            'icon'            => 'groups',
-            'keywords'        => ['personeel', 'team', 'medewerkers'],
-            'supports'        => [
-                'align' => true,
-            ],
-        ]);
-        acf_register_block_type([
-            'name'            => 'vacature',
-            'title'           => __('Vacature Block'),
-            'description'     => __('Vacature', 'test'),
-            'render_template' => 'template-parts/blocks/vacature.php',
-            'category'        => 'layout',
-            'icon'            => 'groups',
-            'keywords'        => ['personeel', 'team', 'medewerkers'],
-            'supports'        => [
-                'align' => true,
-            ],
-        ]);
-
-        acf_register_block_type([
-            'name'            => 'benefits',
-            'title'           => __('Benefit Block'),
-            'description'     => __('Benefit', 'test'),
-            'render_template' => 'template-parts/blocks/benefits.php',
-            'category'        => 'layout',
-            'icon'            => 'groups',
-            'keywords'        => ['personeel', 'team', 'medewerkers'],
-            'supports'        => [
-                'align' => true,
-            ],
-        ]);
-
-        acf_register_block_type([
-            'name'            => 'Pricing',
-            'title'           => __('Pricing Block'),
-            'description'     => __('Pricing', 'test'),
-            'render_template' => 'template-parts/blocks/pricing.php',
-            'category'        => 'layout',
-            'icon'            => 'groups',
-            'keywords'        => ['personeel', 'team', 'medewerkers'],
-            'supports'        => [
-                'align' => true,
-            ],
-        ]);
-
-        acf_register_block_type([
-            'name'            => 'herov2',
-            'title'           => __('Hero v2 Block'),
-            'description'     => __('herov2', 'test'),
-            'render_template' => 'template-parts/blocks/herov2.php',
-            'category'        => 'layout',
-            'icon'            => 'groups',
-            'keywords'        => ['personeel', 'team', 'medewerkers'],
-            'supports'        => [
-                'align' => true,
-            ],
-        ]);
-        acf_register_block_type([
-            'name'              => 'faq-accordion',
-            'title'             => __('FAQ Accordion'),
-            'description'       => __('Simple FAQ accordion block.'),
-            'render_template'   => get_template_directory() . '/template-parts/blocks/faq-accordion.php',
-            'category'          => 'formatting',
-            'icon'              => 'editor-help',
-            'keywords'          => ['faq', 'accordion'],
-            'mode'              => 'edit',
-            'supports'          => [
-                'align' => true,
-                'jsx'   => true
-            ]
-        ]);
-    }
-}
-
-
 function register_personeel_cpt() {
     $labels = [
         'name'                  => __( 'Personeel', 'test' ),
@@ -545,50 +435,6 @@ add_action( 'init', 'register_vacature_cpt' );
 
 
 
-function register_faq_cpt() {
-    $labels = [
-        'name'                  => __( 'faq', 'test' ),
-        'singular_name'         => __( 'FAQ', 'test' ),
-        'menu_name'             => __( 'Faq', 'test' ),
-        'name_admin_bar'        => __( 'Faq', 'test' ),
-        'add_new'               => __( 'Nieuw faq', 'test' ),
-        'add_new_item'          => __( 'Nieuw Faq toevoegen', 'test' ),
-        'edit_item'             => __( 'Faq bewerken', 'test' ),
-        'new_item'              => __( 'Nieuw Faq', 'test' ),
-        'view_item'             => __( 'Bekijk Faq', 'test' ),
-        'search_items'          => __( 'Zoek Faq', 'test' ),
-        'not_found'             => __( 'Geen Faq gevonden', 'test' ),
-        'not_found_in_trash'    => __( 'Geen Faq gevonden in prullenbak', 'test' ),
-        'all_items'             => __( 'Alle Faq', 'test' ),
-        'archives'              => __( 'Faq archief', 'test' ),
-        'insert_into_item'      => __( 'Invoegen in Faq', 'test' ),
-        'uploaded_to_this_item' => __( 'Geüpload naar dit Faq', 'test' ),
-    ];
-
-    $args = [
-        'labels'             => $labels,
-        'public'             => true,
-        'has_archive'        => true,
-        'rewrite'            => [ 'slug' => 'faq' ],
-        'show_in_rest'       => true, 
-        'menu_position'      => 20,
-        'menu_icon'          => 'dashicons-edit-page',
-        'supports'           => [ 'title', 'editor', 'thumbnail', 'excerpt' ],
-        'hierarchical'       => false,
-        'show_ui'            => true,
-        'show_in_menu'       => true,
-        'show_in_admin_bar'  => true,
-        'show_in_nav_menus'  => true,
-        'publicly_queryable' => true,
-        'exclude_from_search'=> false,
-        'capability_type'    => 'post',
-        'taxonomies' => array('category'),
-
-    ];
-
-    register_post_type( 'faq', $args );
-}
-add_action( 'init', 'register_faq_cpt' );
 
 
 
@@ -599,5 +445,3 @@ function theme_allow_svg_uploads( $mimes ) {
     return $mimes;
 }
 add_filter( 'upload_mimes', 'theme_allow_svg_uploads' );
-
-

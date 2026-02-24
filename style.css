@@ -22,7 +22,7 @@ Version: 1.0
 }
 
 .container-width {
-    max-width: 1000px;
+    width: 100%;
 }
 
 main {
@@ -385,8 +385,7 @@ img.logo {
 }
 
 section {
-    margin-bottom: 80px;
-    margin-top: 20px;
+    padding: 80px 0px !important;
 }
 
 .kleur {
