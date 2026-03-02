@@ -1,7 +1,7 @@
 <section id="{{ esc_attr($uid) }}" class="pricing-plans" style="background: {{ esc_attr($sectionBg) }};">
     <div class="pricing-plans__wrap">
         @if (!empty($heading))
-            <h2 class="pricing-plans__heading">{!! nl2br(esc_html($heading)) !!}</h2>
+            <h2 class="pricing-plans__heading">{!! nl2br ($heading) !!}</h2>
         @endif
 
         @if (!empty($description))

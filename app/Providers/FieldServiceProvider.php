@@ -14,7 +14,6 @@ class FieldServiceProvider extends ServiceProvider
             }
 
             $this->registerGalleryFields();
-            $this->registerShineShowcaseFields();
             $this->registerMembershipOfferFields();
             $this->registerPricingPlansFields();
             $this->registerWashPassPromoFields();
@@ -103,91 +102,7 @@ class FieldServiceProvider extends ServiceProvider
         ]);
     }
 
-    protected function registerShineShowcaseFields(): void
-    {
-        acf_add_local_field_group([
-            'key' => 'group_shine_showcase_block_fields',
-            'title' => __('Shine Showcase Block Fields', 'test'),
-            'fields' => [
-                [
-                    'key' => 'shine_section_bg',
-                    'label' => __('Section Background', 'test'),
-                    'name' => 'shine_section_bg',
-                    'type' => 'color_picker',
-                    'default_value' => '#ececec',
-                ],
-                [
-                    'key' => 'field_shine_heading_top',
-                    'label' => __('Heading Top', 'test'),
-                    'name' => 'shine_heading_top',
-                    'type' => 'text',
-                    'default_value' => __('Jouw auto', 'test'),
-                ],
-                [
-                    'key' => 'field_shine_heading_bottom',
-                    'label' => __('Heading Bottom', 'test'),
-                    'name' => 'shine_heading_bottom',
-                    'type' => 'text',
-                    'default_value' => __('blinkend', 'test'),
-                ],
-                [
-                    'key' => 'field_shine_description',
-                    'label' => __('Description', 'test'),
-                    'name' => 'shine_description',
-                    'type' => 'textarea',
-                    'rows' => 5,
-                    'new_lines' => 'br',
-                    'default_value' => __('Bij Snella Autowas streven we naar topkwaliteit! Onze geavanceerde textiel wasborstels zorgen voor een vlekkeloze reiniging van je auto’s lak en een verbluffende glans. Met osmose-water wordt je auto keer op keer vlekvrij droog. Bij ons krijgt jouw auto de zorg die het verdient. Ervaar de ultieme glans en bescherming bij Snella Autowas!', 'test'),
-                ],
-                [
-                    'key' => 'field_shine_cta_text',
-                    'label' => __('CTA Text', 'test'),
-                    'name' => 'shine_cta_text',
-                    'type' => 'text',
-                    'default_value' => __('Snelsparen bij Snella', 'test'),
-                ],
-                [
-                    'key' => 'field_shine_cta_url',
-                    'label' => __('CTA URL', 'test'),
-                    'name' => 'shine_cta_url',
-                    'type' => 'url',
-                ],
-                [
-                    'key' => 'field_shine_badge_text',
-                    'label' => __('Badge Text', 'test'),
-                    'name' => 'shine_badge_text',
-                    'type' => 'text',
-                    'default_value' => __('Ontdek Snella Unlimited', 'test'),
-                ],
-                [
-                    'key' => 'field_shine_images',
-                    'label' => __('Images', 'test'),
-                    'name' => 'shine_images',
-                    'type' => 'gallery',
-                    'preview_size' => 'medium',
-                    'library' => 'all',
-                    'mime_types' => 'jpg,jpeg,png,webp,gif',
-                    'min' => 0,
-                    'max' => 4,
-                    'return_format' => 'array',
-                ],
-            ],
-            'location' => [
-                [
-                    [
-                        'param' => 'block',
-                        'operator' => '==',
-                        'value' => 'acf/shine-showcase',
-                    ],
-                ],
-            ],
-            'position' => 'normal',
-            'style' => 'default',
-            'label_placement' => 'top',
-            'instruction_placement' => 'label',
-        ]);
-    }
-
+   
     protected function registerMembershipOfferFields(): void
     {
         acf_add_local_field_group([

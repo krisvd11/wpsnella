@@ -9,6 +9,7 @@ use App\Blocks\InfoBlock;
 use App\Blocks\MembershipOfferBlock;
 use App\Blocks\PricingPlansBlock;
 use App\Blocks\ShineShowcaseBlock;
+use App\Blocks\faqBlock;
 use App\Blocks\VideoIntroBlock;
 use App\Blocks\WashPassPromoBlock;
 use Illuminate\Support\ServiceProvider;
@@ -48,7 +49,7 @@ class BlockServiceProvider extends ServiceProvider
             ['align' => true, 'jsx' => true]
         );
         acf_register_block_type([
-            'name'            => 'glans-tiles',
+            'name'            => 'glans-tiles-2',
             'title'           => __('Glans Tiles Block', 'test'),
             'description'     => __('One-row 4-tile hero strip block.', 'test'),
             'render_callback' => function (array $block): void {
@@ -75,17 +76,6 @@ class BlockServiceProvider extends ServiceProvider
             'supports'        => ['align' => true, 'jsx' => true],
         ]);
 
-        $this->registerBlock(
-            'faq-accordion',
-            __('FAQ Accordion'),
-            __('Simple FAQ accordion block.'),
-            'editor-help',
-            ['faq', 'accordion'],
-            'blocks.faq-accordion',
-            'formatting',
-            'edit',
-            ['align' => true, 'jsx' => true]
-        );
 
 
 

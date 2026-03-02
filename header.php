@@ -8,6 +8,7 @@
     <body <?php body_class(); ?>>
 
     <header class="site-header">
+        <div class="left-header">
         <div class="site-branding">
         <?php
 $custom_logo_id = get_theme_mod( 'custom_logo' );
@@ -34,6 +35,15 @@ if ( $logo_image ) : ?>
             'fallback_cb'    => false,
         ] );
         ?>
+</div>
+<div class="menu-button">
+<a href="#"> 
+<button>
+Inloggen
+</button>
+</a>
+
+        </div>
     </header>
 <!--
     <div id="page-loader">
