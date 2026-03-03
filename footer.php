@@ -183,11 +183,6 @@
             </div>
         </div>
 
-        <div class="footer-bottom">
-            <p class="footer-text footer-bottom-text">
-                &copy; <?php echo esc_html( date_i18n( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>
-            </p>
-        </div>
     </div>
 
 </footer>

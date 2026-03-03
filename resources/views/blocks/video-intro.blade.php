@@ -82,7 +82,7 @@
     padding: 12px 16px !important;
     border-radius: 12px;
     font-family: "Causten", sans-serif;
-    font-size: clamp(22px, 1.6vw, 28px);
+    font-size: 18px;
     font-weight: 700;
     width: fit-content;
 }
@@ -106,7 +106,7 @@
 .video-intro-text {
     margin: 0;
     font-family: "Causten regular", sans-serif;
-    font-size: clamp(12px, 1.6vw, 44px) !important;
+    font-size: 21px; !important;
     padding-right: 100px !important;
     line-height: 1.45;
     max-width: 760px;

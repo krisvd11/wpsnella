@@ -38,6 +38,7 @@
     background: {{ esc_attr($bgColor ?: '#ececec') }};
     padding: 56px 24px 72px;
     overflow: hidden;
+    width: 100%;
 }
 
 #{{ esc_html($uid) }} .shine-showcase__container {
@@ -81,7 +82,7 @@
     margin: 0;
     color: #17338f;
     font-family: "Causten regular", sans-serif;
-    font-size: clamp(18px, 2vw, 42px);
+    font-size: 18px;
     line-height: 1.55;
 }
 
@@ -98,19 +99,19 @@
     display: inline-flex;
     align-items: center;
     gap: 14px;
-    padding: 16px 38px;
+    padding: 15px 30px;
     border-radius: 999px;
     background: #f5bb14;
     color: #17338f;
     text-decoration: none;
     font-family: "Causten", sans-serif;
-    font-size: clamp(18px, 1.6vw, 44px);
+    font-size: 18px;
     font-weight: 700;
     line-height: 1;
 }
 
 #{{ esc_html($uid) }} .shine-showcase__cta-arrow {
-    font-size: clamp(34px, 2.5vw, 48px);
+    font-size: 28px;
     line-height: 1;
 }
 
@@ -121,7 +122,7 @@
     gap: 12px;
     color: #17338f;
     font-family: "Causten", sans-serif;
-    font-size: clamp(18px, 1.6vw, 44px);
+    font-size: 18px;
     font-weight: 700;
     line-height: 1;
 }

@@ -114,22 +114,9 @@
     display: block;
 }
 
-#{{ esc_html($uid) }} .washpass-promo__panel-content h3 {
-    margin: 0;
-    color: #17338f;
-    font-family: "Causten", sans-serif;
-    font-size: clamp(48px, 4.1vw, 76px);
-    line-height: 0.95;
-    font-weight: 700;
-}
 
-#{{ esc_html($uid) }} .washpass-promo__text {
-    margin: 18px 0 0;
-    color: #17338f;
-    font-family: "Causten regular", sans-serif;
-    font-size: clamp(18px, 1.45vw, 30px);
-    line-height: 1.5;
-}
+
+
 
 #{{ esc_html($uid) }} .washpass-promo__benefits {
     margin: 20px 0 0;
@@ -147,15 +134,15 @@
     align-items: start;
     color: #17338f;
     font-family: "Causten", sans-serif;
-    font-size: clamp(18px, 1.6vw, 38px);
+    font-size: 18px;
     line-height: 1.25;
     font-weight: 700;
 }
 
 #{{ esc_html($uid) }} .washpass-promo__check {
     fill: #f5bb14;
-    font-size: clamp(30px, 2vw, 44px);
-    line-height: 1;
+    font-size: 18px;
+    line-height: 1.2;
 }
 
 #{{ esc_html($uid) }} .washpass-promo__cta {
@@ -167,9 +154,9 @@
     background: #17338f;
     color: #fff;
     border-radius: 999px;
-    padding: 14px 30px;
+    padding: 15px 30px;
     font-family: "Causten", sans-serif;
-    font-size: clamp(24px, 1.7vw, 36px);
+    font-size: 18px;
     font-weight: 700;
 }
 

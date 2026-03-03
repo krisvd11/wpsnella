@@ -39,7 +39,6 @@
 
 <style>
 #{{ esc_html($uid) }} {
-    background: blue;
     padding: 60px 24px;
     overflow: hidden;
     width: 100%;
@@ -83,10 +82,7 @@
 
 #{{ esc_html($uid) }} .gallery-showcase__description {
     color: #17338f;
-    margin: 0;
-    font-size: clamp(18px, 2.2vw, 34px);
-    line-height: 1.55;
-    letter-spacing: -0.01em;
+
 }
 
 #{{ esc_html($uid) }} .gallery-showcase__actions {

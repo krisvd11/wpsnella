@@ -17,6 +17,7 @@ class FieldServiceProvider extends ServiceProvider
             $this->registerMembershipOfferFields();
             $this->registerPricingPlansFields();
             $this->registerWashPassPromoFields();
+            $this->registerSnelsparenIntroFields();
             $this->registerSpaarstappenFields();
             $this->registerGlansTilesFields();
             $this->registerVideoIntroFields();
@@ -606,6 +607,111 @@ class FieldServiceProvider extends ServiceProvider
                         'param' => 'block',
                         'operator' => '==',
                         'value' => 'acf/washpass-promo',
+                    ],
+                ],
+            ],
+            'position' => 'normal',
+            'style' => 'default',
+            'label_placement' => 'top',
+            'instruction_placement' => 'label',
+        ]);
+    }
+
+    protected function registerSnelsparenIntroFields(): void
+    {
+        acf_add_local_field_group([
+            'key' => 'group_snelsparen_intro_block_fields',
+            'title' => __('Snelsparen Intro Block Fields', 'test'),
+            'fields' => [
+                [
+                    'key' => 'field_snelsparen_section_bg',
+                    'label' => __('Section Background', 'test'),
+                    'name' => 'snelsparen_section_bg',
+                    'type' => 'color_picker',
+                    'default_value' => '#ececec',
+                ],
+                [
+                    'key' => 'field_snelsparen_heading_line_one_accent',
+                    'label' => __('Heading Line 1 (Accent)', 'test'),
+                    'name' => 'snelsparen_heading_line_one_accent',
+                    'type' => 'text',
+                    'default_value' => __('Zo werkt sparen', 'test'),
+                ],
+                [
+                    'key' => 'field_snelsparen_heading_line_one_base',
+                    'label' => __('Heading Line 1 (Base)', 'test'),
+                    'name' => 'snelsparen_heading_line_one_base',
+                    'type' => 'text',
+                    'default_value' => __('met', 'test'),
+                ],
+                [
+                    'key' => 'field_snelsparen_heading_line_two',
+                    'label' => __('Heading Line 2', 'test'),
+                    'name' => 'snelsparen_heading_line_two',
+                    'type' => 'text',
+                    'default_value' => __('Snella Snelsparen', 'test'),
+                ],
+                [
+                    'key' => 'field_snelsparen_heading_accent_color',
+                    'label' => __('Heading Accent Color', 'test'),
+                    'name' => 'snelsparen_heading_accent_color',
+                    'type' => 'color_picker',
+                    'default_value' => '#f5bb14',
+                ],
+                [
+                    'key' => 'field_snelsparen_heading_base_color',
+                    'label' => __('Heading Base Color', 'test'),
+                    'name' => 'snelsparen_heading_base_color',
+                    'type' => 'color_picker',
+                    'default_value' => '#17338f',
+                ],
+                [
+                    'key' => 'field_snelsparen_description',
+                    'label' => __('Description', 'test'),
+                    'name' => 'snelsparen_description',
+                    'type' => 'textarea',
+                    'rows' => 6,
+                    'new_lines' => 'br',
+                    'default_value' => __('Jij wast je auto regelmatig? Dan is sparen bij Snella Autowas echt wat voor jou! Met een gratis account spaar jij automatisch bij elke keer dat je komt wassen voor een gratis wasbeurt voor jouw auto. Maar er is nog meer. Zo krijg je 50% korting voor je verjaardag en ontvang je regelmatig leuke acties en kortingen in je mailbox.', 'test'),
+                ],
+                [
+                    'key' => 'field_snelsparen_description_color',
+                    'label' => __('Description Color', 'test'),
+                    'name' => 'snelsparen_description_color',
+                    'type' => 'color_picker',
+                    'default_value' => '#17338f',
+                ],
+                [
+                    'key' => 'field_snelsparen_left_images',
+                    'label' => __('Left Side Images', 'test'),
+                    'name' => 'snelsparen_left_images',
+                    'type' => 'gallery',
+                    'preview_size' => 'medium',
+                    'library' => 'all',
+                    'mime_types' => 'jpg,jpeg,png,webp',
+                    'min' => 0,
+                    'max' => 2,
+                    'return_format' => 'array',
+                ],
+                [
+                    'key' => 'field_snelsparen_right_images',
+                    'label' => __('Right Side Images', 'test'),
+                    'name' => 'snelsparen_right_images',
+                    'type' => 'gallery',
+                    'preview_size' => 'medium',
+                    'library' => 'all',
+                    'mime_types' => 'jpg,jpeg,png,webp',
+                    'min' => 0,
+                    'max' => 2,
+                    'return_format' => 'array',
+                ],
+            ],
+            'location' => [
+                [
+                    [
+                        'param' => 'block',
+                        'operator' => '==',
+                        'value' => 'acf/snelsparen-intro',
                     ],
                 ],
             ],

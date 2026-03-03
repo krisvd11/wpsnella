@@ -9,6 +9,7 @@ use App\Blocks\InfoBlock;
 use App\Blocks\MembershipOfferBlock;
 use App\Blocks\PricingPlansBlock;
 use App\Blocks\ShineShowcaseBlock;
+use App\Blocks\SnelsparenIntroBlock;
 use App\Blocks\faqBlock;
 use App\Blocks\VideoIntroBlock;
 use App\Blocks\WashPassPromoBlock;
@@ -186,6 +187,23 @@ class BlockServiceProvider extends ServiceProvider
             'category'        => 'layout',
             'icon'            => 'id-alt',
             'keywords'        => ['washpas', 'promo', 'snella'],
+            'mode'            => 'edit',
+            'supports'        => [
+                'align' => true,
+                'jsx' => true,
+            ],
+        ]);
+
+        acf_register_block_type([
+            'name'            => 'snelsparen-intro',
+            'title'           => __('Snelsparen Intro Block', 'test'),
+            'description'     => __('Centered heading and text with floating circular images.', 'test'),
+            'render_callback' => function (array $block): void {
+                echo view('blocks.snelsparen-intro', SnelsparenIntroBlock::make($block))->render();
+            },
+            'category'        => 'layout',
+            'icon'            => 'money',
+            'keywords'        => ['snelsparen', 'sparen', 'snella'],
             'mode'            => 'edit',
             'supports'        => [
                 'align' => true,

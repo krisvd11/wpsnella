@@ -8,7 +8,7 @@
             </div>
 
             <div class="membership-offer__banner" style="background: {{ esc_attr($offerPanelBg) }};">
-                <h2 style="color: {{ esc_attr($offerTitleColor) }};">{!! nl2br(esc_html($offerTitle)) !!}</h2>
+                <h3 style="color: {{ esc_attr($offerTitleColor) }};">{!! nl2br(esc_html($offerTitle)) !!}</h3>
                 <div class="membership-offer__price" style="background: {{ esc_attr($offerPriceBg) }}; color: {{ esc_attr($offerPriceColor) }};">
                     {{ esc_html($offerPrice) }}
                 </div>
@@ -97,10 +97,10 @@
     width: 55%;
 }
 
-#{{ esc_html($uid) }} .membership-offer__banner h2 {
+#{{ esc_html($uid) }} .membership-offer__banner h3 {
     margin: 0;
     font-family: "Causten", sans-serif;
-    font-size: clamp(36px, 3vw, 66px);
+    font-size: 38px !important;
     line-height: 0.95;
     font-weight: 700;
     max-width: 680px;
@@ -151,7 +151,7 @@
 #{{ esc_html($uid) }} .membership-card--feature p {
     margin: 0;
     font-family: "Causten", sans-serif;
-    font-size: clamp(18px, 1.5vw, 38px);
+    font-size: 18px;
     line-height: 1.25;
     font-weight: 700;
 }
@@ -163,19 +163,10 @@
     text-align: center;
 }
 
-#{{ esc_html($uid) }} .membership-card--price h3 {
-    margin: 5px;
-    font-family: "Causten", sans-serif;
-    font-size: clamp(72px, 5.2vw, 92px);
-    line-height: 0.95;
-    font-weight: 700;
-    padding: 5px 0px !important;
-}
 
 #{{ esc_html($uid) }} .membership-card--price p {
     margin: 8px 0 0;
     font-family: "Causten regular", sans-serif;
-    font-size: clamp(18px, 1.6vw, 36px);
     color: white;
 }
 
@@ -187,12 +178,7 @@
     width: 194%;
 }
 
-#{{ esc_html($uid) }} .membership-card--cta p {
-    margin: 0;
-    font-family: "Causten regular", sans-serif;
-    font-size: clamp(20px, 1.6vw, 34px);
-    line-height: 1.45;
-}
+
 
 #{{ esc_html($uid) }} .membership-card--cta a {
     display: inline-flex;
@@ -205,7 +191,7 @@
     border-radius: 999px;
     padding: 12px 18px;
     font-family: "Causten", sans-serif;
-    font-size: clamp(24px, 1.8vw, 34px);
+    font-size: 18px;
     font-weight: 700;
     width: fit-content;
 }
@@ -215,7 +201,6 @@
     text-align: center;
     color: #b2b8c8;
     font-family: "Causten regular", sans-serif;
-    font-size: clamp(20px, 1.6vw, 34px);
 }
 
 @media (max-width: 1150px) {

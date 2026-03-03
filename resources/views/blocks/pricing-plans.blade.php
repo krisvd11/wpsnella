@@ -24,7 +24,7 @@
                                 </span>
                             @endif
                             @if (!empty($card['pointsSub']))
-                            <p class="pricing-plan-card__points-sub">{{ esc_html($card['pointsSub']) }}</p>
+                            <p class="pricing-plan-card__points-sub" style="color: {{ esc_attr($card['textColor']) }};">{{ esc_html($card['pointsSub']) }}</p>
 
                             </div>
                         @endif
@@ -57,9 +57,11 @@
 .pricinginfo {
     display: flex;
     flex-direction: column;
+    gap: 6px;
 }
 #{{ esc_html($uid) }} {
     padding: 34px 18px 38px;
+    width: 100%;
 }
 
 #{{ esc_html($uid) }} .pricing-plans__wrap {
@@ -80,11 +82,7 @@
 #{{ esc_html($uid) }} .pricing-plans__description {
     margin: 14px auto 24px !important;
     text-align: center;
-    color: #17338f;
-    font-family: "Causten regular", sans-serif;
-    font-size: clamp(22px, 1.8vw, 40px);
-    line-height: 1.5;
-    padding: 0px 60px !important;
+    max-width: 700px;
 }
 
 #{{ esc_html($uid) }} .pricing-plans__cards {
@@ -101,7 +99,7 @@
 #{{ esc_html($uid) }} .pricing-plan-card h3 {
     margin: 0 0 8px;
     font-family: "Causten", sans-serif;
-    font-size: clamp(54px, 4.4vw, 84px);
+    font-size: 58px !important;
     line-height: 0.95;
     font-weight: 700;
 }
@@ -114,10 +112,11 @@
 }
 
 #{{ esc_html($uid) }} .pricing-plan-card__price {
-    font-family: "Causten", sans-serif;
-    font-size: clamp(64px, 5vw, 106px);
+    font-size: 61px;
+    font-weight
+: 700;
     line-height: 1;
-    font-weight: 700;
+    letter-spacing: -.025em;
 }
 
 #{{ esc_html($uid) }} .pricing-plan-card__badge {
@@ -125,7 +124,7 @@
     border-radius: 999px;
     padding: 7px 16px;
     font-family: "Causten", sans-serif;
-    font-size: clamp(20px, 1.35vw, 28px);
+    font-size: 14px;
     line-height: 1;
     font-weight: 700;
 }
@@ -133,7 +132,7 @@
 #{{ esc_html($uid) }} .pricing-plan-card__points-sub {
     margin: 8px 0 0;
     font-family: "Causten regular", sans-serif;
-    font-size: clamp(20px, 1.4vw, 30px);
+    font-size: 14px;
     line-height: 1.2;
 }
 
@@ -152,13 +151,13 @@
     align-items: start;
     column-gap: 10px;
     font-family: "Causten regular", sans-serif;
-    font-size: clamp(26px, 1.85vw, 39px);
+    font-size: 18px;
     line-height: 1.3;
 }
 
 #{{ esc_html($uid) }} .pricing-plan-card__check {
     font-family: "Causten", sans-serif;
-    font-size: clamp(30px, 2vw, 40px);
+    font-size: 18px;
     line-height: 1;
     margin-top: 3px;
 }
