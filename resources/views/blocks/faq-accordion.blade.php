@@ -126,8 +126,8 @@ $query = ($method === 'manual') ? $manual_query : $category_query;
 .acf-faq-accordion {
     width: 500px;
     border-radius: 20px;
-    border: 1px solid <?php echo esc_html($bordercolor); ?>;
     overflow: hidden;
+
 
 }
 
@@ -185,6 +185,24 @@ $query = ($method === 'manual') ? $manual_query : $category_query;
     rotate: 180deg;
 }
 
+
+@media (max-width: 600px) {
+    .acf-faq-accordion {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .acf-faq-accordion img,
+    .acf-faq-accordion video {
+      max-width: 100%;
+      height: auto;
+    }
+    .acf-faq-accordion [class*="grid"],
+    .acf-faq-accordion [class*="cards"],
+    .acf-faq-accordion [class*="columns"],
+    .acf-faq-accordion [class*="row"] {
+      grid-template-columns: 1fr;
+    }
+}
 </style>
 
 

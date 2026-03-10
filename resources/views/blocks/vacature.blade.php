@@ -65,4 +65,22 @@ $vacature_query = new WP_Query([
     flex-direction: column;
     gap: <?php echo esc_html($gap); ?>px;
 }
+
+@media (max-width: 600px) {
+    .block-vacature {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .block-vacature img,
+    .block-vacature video {
+      max-width: 100%;
+      height: auto;
+    }
+    .block-vacature [class*="grid"],
+    .block-vacature [class*="cards"],
+    .block-vacature [class*="columns"],
+    .block-vacature [class*="row"] {
+      grid-template-columns: 1fr;
+    }
+}
 </style>

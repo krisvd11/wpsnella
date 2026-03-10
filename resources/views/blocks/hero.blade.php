@@ -84,4 +84,22 @@ display: flex;
     }
 
 
-    </style>
+    
+@media (max-width: 600px) {
+    .hero-block {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .hero-block img,
+    .hero-block video {
+      max-width: 100%;
+      height: auto;
+    }
+    .hero-block [class*="grid"],
+    .hero-block [class*="cards"],
+    .hero-block [class*="columns"],
+    .hero-block [class*="row"] {
+      grid-template-columns: 1fr;
+    }
+}
+</style>

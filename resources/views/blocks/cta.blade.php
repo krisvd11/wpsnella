@@ -219,4 +219,22 @@ $link_button = get_field('button-link');
         padding: 20px;
         gap: 40px;
     }
+
+@media (max-width: 600px) {
+    .cta-block {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .cta-block img,
+    .cta-block video {
+      max-width: 100%;
+      height: auto;
+    }
+    .cta-block [class*="grid"],
+    .cta-block [class*="cards"],
+    .cta-block [class*="columns"],
+    .cta-block [class*="row"] {
+      grid-template-columns: 1fr;
+    }
+}
 </style>

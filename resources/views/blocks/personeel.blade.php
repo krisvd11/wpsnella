@@ -65,4 +65,22 @@ $personeel_query = new WP_Query([
     gap: 20px;
 }
 
+
+@media (max-width: 600px) {
+    .block-personeel {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .block-personeel img,
+    .block-personeel video {
+      max-width: 100%;
+      height: auto;
+    }
+    .block-personeel [class*="grid"],
+    .block-personeel [class*="cards"],
+    .block-personeel [class*="columns"],
+    .block-personeel [class*="row"] {
+      grid-template-columns: 1fr;
+    }
+}
 </style>

@@ -46,8 +46,12 @@
 
                     <a class="washpass-promo__cta" href="{{ esc_url($ctaUrl) }}">
                         <span>{{ esc_html($ctaLabel) }}</span>
-                        <span aria-hidden="true">&rarr;</span>
-                    </a>
+                        <span class="arrow-svg"><svg xmlns="http://www.w3.org/2000/svg" width="32.611" height="19.338" viewBox="0 0 32.611 19.338">
+                            <g id="Group_459" data-name="Group 459" transform="translate(-251.811 -660.331)">
+                              <path id="Path_214" data-name="Path 214" d="M-3441.939-7041h29.205" transform="translate(3695 7711)" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-width="2.5"></path>
+                              <path id="Path_215" data-name="Path 215" d="M-3405.73-7048.316l7.9,7.9-7.9,7.9" transform="translate(3681 7710.415)" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+                            </g>
+                          </svg></span>                    </a>
                 </div>
             </div>
         </div>
@@ -68,7 +72,6 @@
     margin: 0 auto 46px;
     text-align: center;
     font-family: "Causten", sans-serif;
-    font-size: clamp(58px, 5vw, 90px);
     line-height: 0.95;
     font-weight: 700;
 }
@@ -182,6 +185,31 @@
 
     #{{ esc_html($uid) }} .washpass-promo__left {
         flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .washpass-promo__left {
+        display: none !important;
+    }
+    .washpass-promo__panel-media {
+        max-width: 80%;
+    }
+    .washpass-promo {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .washpass-promo img,
+    .washpass-promo video {
+      max-width: 100%;
+      height: auto;
+    }
+    .washpass-promo [class*="grid"],
+    .washpass-promo [class*="cards"],
+    .washpass-promo [class*="columns"],
+    .washpass-promo [class*="row"] {
+      grid-template-columns: 1fr;
     }
 }
 </style>

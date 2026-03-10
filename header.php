@@ -61,12 +61,33 @@ Inloggen
         </div>
     </header>
 
-    <!-- <div id="page-loader">
+    <div id="page-loader">
         <div class="loader-inner">
+
+        <div class="logo-animatie">
+
+
+        <img class="logo-animatie-img spinner" src="http://localhost:8000/wp-content/uploads/2026/03/svgwind-9b5eef.svg">
+
+        <img class="logo-animatie-img" src="http://localhost:8000/wp-content/uploads/2026/03/snella_text-a92fd4.svg">
+
+        </div>
             <div class="loader-bar">
+                <div class="loader-left">
 
+                </div>
 
-            <img src="http://localhost:8000/wp-content/uploads/2026/02/logo.svg">
+            <div class="loader-left-middle">
+
+            </div>
+
+            <div class="loader-right-middle">
+
+            </div>
+
+            <div class="loader-right">
+
+            </div>
             </div>
         </div>
-    </div>  -->
+    </div> 

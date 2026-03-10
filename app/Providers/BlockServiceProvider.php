@@ -38,6 +38,19 @@ class BlockServiceProvider extends ServiceProvider
         $this->registerBlock('benefits', __('Benefit Block'), __('Benefit', 'test'), 'groups', ['personeel', 'team', 'medewerkers'], 'blocks.benefits');
         $this->registerBlock('Pricing', __('Pricing Block'), __('Pricing', 'test'), 'groups', ['personeel', 'team', 'medewerkers'], 'blocks.pricing');
         $this->registerBlock('herov2', __('Hero v2 Block'), __('herov2', 'test'), 'groups', ['personeel', 'team', 'medewerkers'], 'blocks.herov2');
+        acf_register_block_type([
+            'name'            => 'glans-tiles',
+            'title'           => __('Glans Tiles Block', 'test'),
+            'description'     => __('Tile grid with text/image tiles and custom colors.', 'test'),
+            'render_callback' => function (array $block): void {
+                echo view('blocks.glans-tiles', GlansTilesBlock::make($block))->render();
+            },
+            'category'        => 'layout',
+            'icon'            => 'grid-view',
+            'keywords'        => ['section', 'tiles', 'grid'],
+            'mode'            => 'edit',
+            'supports'        => ['align' => true, 'jsx' => true],
+        ]);
         $this->registerBlock(
             'spaarstappen',
             __('Spaarstappen Block', 'test'),
@@ -49,19 +62,6 @@ class BlockServiceProvider extends ServiceProvider
             'edit',
             ['align' => true, 'jsx' => true]
         );
-        acf_register_block_type([
-            'name'            => 'glans-tiles-2',
-            'title'           => __('Glans Tiles Block', 'test'),
-            'description'     => __('One-row 4-tile hero strip block.', 'test'),
-            'render_callback' => function (array $block): void {
-                echo view('blocks.glans-tiles', GlansTilesBlock::make($block))->render();
-            },
-            'category'        => 'layout',
-            'icon'            => 'images-alt2',
-            'keywords'        => ['geniet', 'glans', 'tiles'],
-            'mode'            => 'edit',
-            'supports'        => ['align' => true, 'jsx' => true],
-        ]);
 
         acf_register_block_type([
             'name'            => 'video-intro',
@@ -76,8 +76,6 @@ class BlockServiceProvider extends ServiceProvider
             'mode'            => 'edit',
             'supports'        => ['align' => true, 'jsx' => true],
         ]);
-
-
 
 
         acf_register_block_type([

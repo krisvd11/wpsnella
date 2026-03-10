@@ -63,4 +63,22 @@
     font-family: 'Causten';
 }
 
+
+@media (max-width: 600px) {
+    .pricing-container {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .pricing-container img,
+    .pricing-container video {
+      max-width: 100%;
+      height: auto;
+    }
+    .pricing-container [class*="grid"],
+    .pricing-container [class*="cards"],
+    .pricing-container [class*="columns"],
+    .pricing-container [class*="row"] {
+      grid-template-columns: 1fr;
+    }
+}
 </style>

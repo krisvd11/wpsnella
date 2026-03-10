@@ -16,12 +16,16 @@
   .info {
     padding: 0px !important;
   }
-.heading_info {
-    font-size: clamp(3.8rem, 3.8rem + (1vw - .375rem) * 3.6994219653, 4.2rem);
-    max-width: 65%;
-    line-height: .85;
 
+  @media (min-width: 600px) {
+
+.heading_info {
+    max-width: 65%;
 }
+.p_info {
+  max-width: 30%;
+}
+  }
 
 .info-container {
   display: flex;
@@ -31,9 +35,32 @@ margin: auto;
 align-items: center;
 }
 
-.p_info {
-  max-width: 30%;
-  color: #0F2A84  ;
-}
 
+
+
+@media (max-width: 600px) {
+  
+    .info-container {
+      display: flex;
+      flex-direction: column;
+    }
+    .membership-offer__image {
+      display: none;
+    }
+    .info {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .info img,
+    .info video {
+      max-width: 100%;
+      height: auto;
+    }
+    .info [class*="grid"],
+    .info [class*="cards"],
+    .info [class*="columns"],
+    .info [class*="row"] {
+      grid-template-columns: 1fr;
+    }
+}
 </style>

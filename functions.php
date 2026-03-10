@@ -10,8 +10,20 @@ if (class_exists(\Roots\Acorn\Application::class)) {
         ->withProviders([
             \App\Providers\BlockServiceProvider::class,
             \App\Providers\FieldServiceProvider::class,
+            \App\Providers\SectionsLibraryBlocksProvider::class,
         ])
         ->boot();
+}
+
+// Fallback registration for migrated section-library blocks.
+// Keeps registration in the theme even if provider autoload/discovery is stale.
+if (file_exists(__DIR__ . '/app/Providers/SectionsLibraryBlocksProvider.php')) {
+    require_once __DIR__ . '/app/Providers/SectionsLibraryBlocksProvider.php';
+    add_action('acf/init', static function (): void {
+        if (class_exists(\App\Providers\SectionsLibraryBlocksProvider::class) && function_exists('app')) {
+            (new \App\Providers\SectionsLibraryBlocksProvider(app()))->register();
+        }
+    }, 20);
 }
 
 function theme_enqueue_gsap_loader() {
@@ -34,11 +46,30 @@ function theme_enqueue_gsap_loader() {
         true
     );
 
+
     wp_enqueue_script(
         'lenis',
-        'https://unpkg.com/@studio-freight/lenis@1.1.14/dist/lenis.min.js',
+        'https://unpkg.com/lenis@1.3.18/dist/lenis.min.js',
         array(),
-        '1.1.14',
+        null,
+        true
+    );
+
+        // Your custom JS
+        wp_enqueue_script(
+            'theme-main-js',
+            get_template_directory_uri() . '/js/gsap.js',
+            array('lenis'),
+            null,
+            true
+        );
+
+    // Your custom JS
+    wp_enqueue_script(
+        'theme-main-js',
+        get_template_directory_uri() . '/js/main.js',
+        array('lenis'),
+        null,
         true
     );
 
@@ -71,7 +102,12 @@ function theme_enqueue_gsap_loader() {
         '1.0',
         true
     );
-
+    wp_enqueue_style(
+        'theme-pricing-style',
+        get_template_directory_uri() . '/css/pricing.css',
+        array(),
+        '1.0'
+    );
     wp_enqueue_style(
         'theme-loader-style',
         get_template_directory_uri() . '/css/loader.css',
@@ -101,7 +137,7 @@ add_action('wp_enqueue_scripts', 'my_starter_theme_assets');
 
 
 function my_starter_theme_setup() {
-    add_theme_support( 'post-thumbnails', [ 'post', 'page', 'personeel' ] );
+    add_theme_support( 'post-thumbnails', [ 'post', 'page', 'personeel', 'vacature' ] );
 
     add_theme_support( 'align-wide' );
 

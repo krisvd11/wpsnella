@@ -10,17 +10,20 @@
                 <p class="shine-showcase__description">{!! wp_kses_post($description) !!}</p>
             @endif
 
-            <div class="shine-showcase__actions">
-                <a class="shine-showcase__cta" href="{{ esc_url($ctaUrl) }}">
-                    <span>{{ esc_html($ctaText) }}</span>
-                    <span class="shine-showcase__cta-arrow" aria-hidden="true">&rarr;</span>
-                </a>
+            @if ($showActions)
+                <div class="shine-showcase__actions">
+                    <a class="shine-showcase__cta" href="{{ esc_url($ctaUrl) }}">
+                        <span>{{ esc_html($ctaText) }}</span>
+                        <span class="shine-showcase__cta-arrow" aria-hidden="true">&rarr;</span>
+                    </a>
 
-                <p class="shine-showcase__badge">
-                    <span class="shine-showcase__dot" aria-hidden="true"></span>
-                    <span>{{ esc_html($badgeText) }}</span>
-                </p>
-            </div>
+                    <p class="shine-showcase__badge">
+                        <span class="shine-showcase__dot" aria-hidden="true"></span>
+                        <span>{{ esc_html($badgeText) }}</span>
+                    </p>
+                </div>
+            @endif
+
         </div>
 
         @for ($i = 0; $i < 4; $i++)
@@ -36,8 +39,7 @@
 <style>
 #{{ esc_html($uid) }} {
     background: {{ esc_attr($bgColor ?: '#ececec') }};
-    padding: 56px 24px 72px;
-    overflow: hidden;
+    padding: 56px 24px 172px !important;
     width: 100%;
 }
 
@@ -45,12 +47,11 @@
     max-width: 1520px;
     margin: 0 auto;
     position: relative;
-    min-height: 600px;
     padding: 20px;
 }
 
 #{{ esc_html($uid) }} .shine-showcase__content {
-    max-width: 760px;
+    max-width: 560px;
     margin: 0 auto;
     text-align: center;
     position: relative;
@@ -84,6 +85,7 @@
     font-family: "Causten regular", sans-serif;
     font-size: 18px;
     line-height: 1.55;
+    text-align: center;
 }
 
 #{{ esc_html($uid) }} .shine-showcase__actions {
@@ -144,7 +146,7 @@
 
 #{{ esc_html($uid) }} .shine-showcase__bubble img {
     width: 100%;
-    height: 100%;
+    height: 100% !important;
     object-fit: cover;
     display: block;
 }
@@ -153,7 +155,7 @@
     width: 170px;
     height: 170px;
     left: 0;
-    top: 70px;
+    top: 0px;
     margin: 14px;
 }
 
@@ -168,7 +170,7 @@
     width: 170px;
     height: 170px;
     right: 0;
-    top: 70px;
+    top: 0px;
     margin: 14px;
 
 }
@@ -176,17 +178,63 @@
 #{{ esc_html($uid) }} .shine-showcase__bubble--4 {
     width: 130px;
     height: 130px;
-    right: 112px;
-    top: 326px;
+    right: 96px;
+    top: 312px;
 }
 
-@media (max-width: 1100px) {
-    #{{ esc_html($uid) }} .shine-showcase__bubble {
-        display: none;
+
+
+@media (max-width: 600px) {
+    .shine-showcase__title {
+        margin-top: 60px !important;
+    }
+    .shine-showcase__bubble--1 {
+        width: 65px !important;
+        height: 65px !important;
+    left: 0;
+    top: 0px !important;
+}
+
+.shine-showcase__bubble--3 {
+    width: 65px !important;
+    height: 65px !important;
+    right: 0;
+    top: 0px !important;
+}
+
+
+    .shine-showcase__bubble--4 {
+        width: 80px !important;
+    height: 80px !important;
+    right: 0;
+    top: -80px !important;
     }
 
-    #{{ esc_html($uid) }} .shine-showcase__container {
-        min-height: 0;
+
+
+    
+    .shine-showcase__bubble--2 {
+        width: 80px !important;
+    height: 80px !important;
+    left: 96px;
+    top: -80px !important;
+
+}
+    
+    .shine-showcase {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .shine-showcase img,
+    .shine-showcase video {
+      max-width: 100%;
+      height: auto;
+    }
+    .shine-showcase [class*="grid"],
+    .shine-showcase [class*="cards"],
+    .shine-showcase [class*="columns"],
+    .shine-showcase [class*="row"] {
+      grid-template-columns: 2fr;
     }
 }
 </style>

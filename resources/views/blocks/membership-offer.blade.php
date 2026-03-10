@@ -37,7 +37,12 @@
                             <p>{!! nl2br(esc_html($card['ctaText'])) !!}</p>
                             <a href="{{ esc_url($card['ctaUrl'] ?: '#') }}">
                                 <span>{{ esc_html($card['ctaLabel']) }}</span>
-                                <span aria-hidden="true">&rarr;</span>
+                                <span class="arrow-svg"><svg xmlns="http://www.w3.org/2000/svg" width="32.611" height="19.338" viewBox="0 0 32.611 19.338">
+                                    <g id="Group_459" data-name="Group 459" transform="translate(-251.811 -660.331)">
+                                      <path id="Path_214" data-name="Path 214" d="M-3441.939-7041h29.205" transform="translate(3695 7711)" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-width="2.5"></path>
+                                      <path id="Path_215" data-name="Path 215" d="M-3405.73-7048.316l7.9,7.9-7.9,7.9" transform="translate(3681 7710.415)" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+                                    </g>
+                                  </svg></span>
                             </a>
                         </article>
                     @endif
@@ -110,7 +115,7 @@
     border-radius: 44px;
     text-align: center;
     font-family: "Causten", sans-serif;
-    font-size: clamp(62px, 5vw, 98px);
+    font-size: 90px;
     font-weight: 700;
     line-height: 1;
     padding: 22px 18px;
@@ -181,6 +186,7 @@
 
 
 #{{ esc_html($uid) }} .membership-card--cta a {
+    font-family: 'Causten';
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -189,11 +195,10 @@
     background: #17338f;
     color: #fff;
     border-radius: 999px;
-    padding: 12px 18px;
-    font-family: "Causten", sans-serif;
     font-size: 18px;
     font-weight: 700;
     width: fit-content;
+    padding: 15px;
 }
 
 #{{ esc_html($uid) }} .membership-offer__footnote {
@@ -219,6 +224,70 @@
 
     #{{ esc_html($uid) }} .membership-offer__cards {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+
+  .membership-card {
+    padding: 0px !important;
+  }
+  .membership-card--price {
+    display: none !important;
+  }
+
+  .membership-card--cta {
+    width: auto !important;
+  }
+
+  .membership-card--cta a {
+    width: 100% !important;
+  }
+
+  .membership-card--cta p {
+    display: none !important;
+  }
+  .info-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .membership-offer__image {
+    display: none;
+  }
+
+    .membership-card--cta {
+        max-width: 100% !important;
+   }
+
+   .membership-offer__banner h3 {
+        text-align: center !important;
+   }
+
+    .membership-offer__banner {
+        height: auto !important;
+        width: 100% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+  .membership-card.membership-card--feature {
+    display: none !important;
+  }
+    .info {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .info img,
+    .info video {
+      max-width: 100%;
+      height: auto;
+    }
+    .info [class*="grid"],
+    .info [class*="cards"],
+    .info [class*="columns"],
+    .info [class*="row"] {
+      grid-template-columns: 1fr;
     }
 }
 </style>

@@ -250,4 +250,25 @@
         display: none;
     }
 }
+
+@media (max-width: 600px) {
+    .gallery-showcase {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .gallery-showcase img,
+    .gallery-showcase video {
+      max-width: 100%;
+      height: auto;
+    }
+    .gallery-showcase [class*="grid"],
+    .gallery-showcase [class*="cards"],
+    .gallery-showcase [class*="columns"],
+    .gallery-showcase [class*="row"] {
+      grid-template-columns: 1fr;
+    }
+    .gallery-showcase__container {
+      grid-template-columns: 1fr;
+    }
+}
 </style>

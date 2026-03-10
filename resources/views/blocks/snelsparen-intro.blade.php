@@ -135,4 +135,22 @@
         margin-left: 0;
     }
 }
+
+@media (max-width: 600px) {
+    .snelsparen-intro {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .snelsparen-intro img,
+    .snelsparen-intro video {
+      max-width: 100%;
+      height: auto;
+    }
+    .snelsparen-intro [class*="grid"],
+    .snelsparen-intro [class*="cards"],
+    .snelsparen-intro [class*="columns"],
+    .snelsparen-intro [class*="row"] {
+      grid-template-columns: 1fr;
+    }
+}
 </style>

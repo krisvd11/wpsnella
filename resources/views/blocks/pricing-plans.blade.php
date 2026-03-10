@@ -74,7 +74,6 @@
     text-align: center;
     color: #17338f;
     font-family: "Causten", sans-serif;
-    font-size: clamp(58px, 5.2vw, 92px);
     line-height: 0.95;
     font-weight: 700;
 }
@@ -169,6 +168,24 @@
 
     #{{ esc_html($uid) }} .pricing-plan-card {
         min-height: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .pricing-plans {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .pricing-plans img,
+    .pricing-plans video {
+      max-width: 100%;
+      height: auto;
+    }
+    .pricing-plans [class*="grid"],
+    .pricing-plans [class*="cards"],
+    .pricing-plans [class*="columns"],
+    .pricing-plans [class*="row"] {
+      grid-template-columns: 1fr;
     }
 }
 </style>

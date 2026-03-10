@@ -8,3 +8,7 @@
   width: 100% !important;
 }
 
+.editor-visual-editor section {
+  opacity: 1;
+  transform: translateY(40px);
+}

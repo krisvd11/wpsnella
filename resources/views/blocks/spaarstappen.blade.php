@@ -128,4 +128,22 @@
         height: 120px;
     }
 }
+
+@media (max-width: 600px) {
+    .spaarstappen-block {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .spaarstappen-block img,
+    .spaarstappen-block video {
+      max-width: 100%;
+      height: auto;
+    }
+    .spaarstappen-block [class*="grid"],
+    .spaarstappen-block [class*="cards"],
+    .spaarstappen-block [class*="columns"],
+    .spaarstappen-block [class*="row"] {
+      grid-template-columns: 1fr;
+    }
+}
 </style>

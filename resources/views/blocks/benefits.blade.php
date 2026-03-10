@@ -105,4 +105,22 @@ $heading = get_field( 'heading' );
 
 
 
+
+@media (max-width: 600px) {
+    .benefit_section {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .benefit_section img,
+    .benefit_section video {
+      max-width: 100%;
+      height: auto;
+    }
+    .benefit_section [class*="grid"],
+    .benefit_section [class*="cards"],
+    .benefit_section [class*="columns"],
+    .benefit_section [class*="row"] {
+      grid-template-columns: 1fr;
+    }
+}
 </style>

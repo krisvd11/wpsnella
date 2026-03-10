@@ -136,4 +136,22 @@ $img = get_field('img');
 
 
 
+
+@media (max-width: 600px) {
+    .hero-section-v2 {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .hero-section-v2 img,
+    .hero-section-v2 video {
+      max-width: 100%;
+      height: auto;
+    }
+    .hero-section-v2 [class*="grid"],
+    .hero-section-v2 [class*="cards"],
+    .hero-section-v2 [class*="columns"],
+    .hero-section-v2 [class*="row"] {
+      grid-template-columns: 1fr;
+    }
+}
 </style>
