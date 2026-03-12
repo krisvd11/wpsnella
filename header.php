@@ -39,7 +39,7 @@ if ( $logo_image ) : ?>
 </div>
 <div class="menu-button">
 <a href="#"> 
-<button>
+<button class="learn-more">
 Inloggen
 </button>
 </a>

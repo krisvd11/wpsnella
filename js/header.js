@@ -133,3 +133,77 @@ document.addEventListener("DOMContentLoaded", function() {
         initUnderline(subMenu, { defaultToFirst: true, offsetY: 2 });
     });
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    const header = document.querySelector(".site-header");
+    if (!header) {
+        return;
+    }
+
+    const stickyStart = 120;
+    const revealDelta = 80;
+
+    let lastScrollY = window.scrollY || 0;
+    let lastRevealY = lastScrollY;
+    let ticking = false;
+    let isSticky = false;
+
+    const spacer = document.createElement("div");
+    spacer.setAttribute("aria-hidden", "true");
+    spacer.style.height = "0px";
+    spacer.style.display = "none";
+    header.insertAdjacentElement("afterend", spacer);
+
+    const setSpacer = (height, active) => {
+        spacer.style.height = `${height}px`;
+        spacer.style.display = active ? "block" : "none";
+    };
+
+    const updateHeader = () => {
+        const currentY = window.scrollY || 0;
+
+        if (currentY <= 0) {
+            header.classList.remove("site-header--sticky", "site-header--hidden");
+            setSpacer(0, false);
+            isSticky = false;
+            lastScrollY = currentY;
+            lastRevealY = currentY;
+            return;
+        }
+
+        if (currentY > stickyStart) {
+            if (!isSticky) {
+                const headerHeight = header.offsetHeight || 0;
+                setSpacer(headerHeight, true);
+                header.classList.add("site-header--sticky");
+                isSticky = true;
+            }
+        } else {
+            header.classList.remove("site-header--sticky", "site-header--hidden");
+            setSpacer(0, false);
+            isSticky = false;
+            lastScrollY = currentY;
+            lastRevealY = currentY;
+            return;
+        }
+
+        if (currentY > lastScrollY) {
+            header.classList.add("site-header--hidden");
+            lastRevealY = currentY;
+        } else if (lastRevealY - currentY >= revealDelta) {
+            header.classList.remove("site-header--hidden");
+        }
+
+        lastScrollY = currentY;
+    };
+
+    window.addEventListener("scroll", function() {
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                updateHeader();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+});
